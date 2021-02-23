@@ -1,24 +1,33 @@
 package pl.maciejcieslik;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import static pl.maciejcieslik.Color.WHITE;
 
-public class Board extends Figure {
-    public Board(Color color) {
-        super(color);
+public class Board  {
+
+    List<Figure> boardRows = new ArrayList<>();
+
+    public Figure getFigure(int row, int col){
+        return boardRows.get(row);
     }
-//
 
-//    Figure queen = new Figure();
+    void setFigure(int row, Figure figure){
+        boardRows.add(row,figure);
+    }
 
-
-//    Figure getFigure(int row, int col) {
-//        return this.col;
+//    @Override
+//    public String toString() {
+//        return "Board{" +
+//                "boardRows=" + boardRows +
+//                ", queenW=" + queenW +
+//                ", pawnW=" + pawnW +
+//                ", queenB=" + queenB +
+//                ", pawnB=" + pawnB +
+//                ", empty=" + empty +
+//                '}';
 //    }
-//
-//    void setFigure(int row, int, col, Figure figure);
-//
-
 }

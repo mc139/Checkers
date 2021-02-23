@@ -11,10 +11,22 @@ public class Figure {
     Figure pawnB = new Figure(Color.BLACK,TypeOfFigure.PAWN);
     Figure empty = new Figure(Color.NONE,TypeOfFigure.NONE);
 
+    public Figure(Figure queenW, Figure pawnW, Figure queenB, Figure pawnB, Figure empty) {
+        this.queenW = queenW;
+        this.pawnW = pawnW;
+        this.queenB = queenB;
+        this.pawnB = pawnB;
+        this.empty = empty;
+    }
+
     @Override
     public String toString() {
-        if(Color.WHITE && TypeOfFigure.PAWN ){
-            return "WP";
-        }
+        return "Figure{" +
+                "queenW=" + queenW +
+                ", pawnW=" + pawnW +
+                ", queenB=" + queenB +
+                ", pawnB=" + pawnB +
+                ", empty=" + empty +
+                '}';
     }
 }
