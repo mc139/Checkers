@@ -14,6 +14,11 @@ public class Board extends BoardRow {
             rows.add(new BoardRow());
         }
     }
+    public void move(int row1, int col1,int row2,int col2){
+        Figure figure = getFigure(row1,col1);
+        setFigure(row2,col2,figure);
+        setFigure(row1,col1,new None());
+    }
 
     public Figure getFigure(int row, int col) {
         return (Figure) rows.get(row).getColumn().get(col);
@@ -33,7 +38,7 @@ public class Board extends BoardRow {
 
     }
 
-    public void newBoard() {
+    public void createNewBoard() {
         for (BoardRow rowsIteration : rows) {
             rowsIteration.BoardRow();
         }
@@ -42,30 +47,15 @@ public class Board extends BoardRow {
     @Override
     public String toString() {
         String board = "";
-        for (int i = 0; i < 8; i++) {
-            board +=
-                    rows.get(i).getColumn().get(i) + " |" +
-                            rows.get(i).getColumn().get(i) + " |" +
-                            rows.get(i).getColumn().get(i) + " |" +
-                            rows.get(i).getColumn().get(i) + " |" +
-                            rows.get(i).getColumn().get(i) + " |" +
-                            rows.get(i).getColumn().get(i) + " |" +
-                            rows.get(i).getColumn().get(i) + " |" +
-                            rows.get(i).getColumn().get(i) + " |" +
-                            "\n";
+        for(int row=0; row<8; row++){
+            board+="|";
+            for(int col =0; col<8; col ++){
+                board += rows.get(row).getColumn().get(col) + "|";
+            }
+            board +="\n";
         }
         return board;
     }
 
-    public static void main(String[] args) {
-        Board board = new Board();
-        board.newBoard();
-
-        board.setFigure(1, 1, new Queen(Color.BLACK));
-        System.out.println(board);
-        board.setFigure(2, 2, new Pawn(Color.WHITE));
-        System.out.println(board);
-
-    }
 }
 

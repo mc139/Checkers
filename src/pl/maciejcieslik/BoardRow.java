@@ -5,11 +5,11 @@ import java.util.List;
 
 public class BoardRow {
 
-    List<Figure> columns = new ArrayList<>();
+    private List<Figure> columns = new ArrayList<>();
 
     public List<Figure> BoardRow() {
         for (int i = 0; i < 8; i++){
-            columns.add(new None(Color.NONE));
+            columns.add(new None());
         }
         return columns;
     }
