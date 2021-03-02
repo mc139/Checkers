@@ -1,33 +1,71 @@
 package pl.maciejcieslik;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import static pl.maciejcieslik.Color.WHITE;
 
-public class Board  {
+public class Board extends BoardRow {
+    private List<BoardRow> rows = new ArrayList<>();
+    private List<Figure> cols = new ArrayList<>();
 
-    List<Figure> boardRows = new ArrayList<>();
 
-    public Figure getFigure(int row, int col){
-        return boardRows.get(row);
+    public Board() {
+        for (int i = 0; i < 8; i++) {
+            rows.add(new BoardRow());
+        }
     }
 
-    void setFigure(int row, Figure figure){
-        boardRows.add(row,figure);
+    public Figure getFigure(int row, int col) {
+        return (Figure) rows.get(row).getColumn().get(col);
     }
 
-//    @Override
-//    public String toString() {
-//        return "Board{" +
-//                "boardRows=" + boardRows +
-//                ", queenW=" + queenW +
-//                ", pawnW=" + pawnW +
-//                ", queenB=" + queenB +
-//                ", pawnB=" + pawnB +
-//                ", empty=" + empty +
-//                '}';
-//    }
+    public Board(List<BoardRow> rows, List<Figure> cols) {
+        this.rows = rows;
+        this.cols = cols;
+        for (int i = 0; i > 8; i++) {
+            rows.add(new BoardRow());
+        }
+    }
+
+    public void setFigure(int row, int col, Figure figure) {
+        rows.get(row).getColumn().add(col, figure);
+        rows.get(row).getColumn().remove(col +1);
+
+    }
+
+    public void newBoard() {
+        for (BoardRow rowsIteration : rows) {
+            rowsIteration.BoardRow();
+        }
+    }
+
+    @Override
+    public String toString() {
+        String board = "";
+        for (int i = 0; i < 8; i++) {
+            board +=
+                    rows.get(i).getColumn().get(i) + " |" +
+                            rows.get(i).getColumn().get(i) + " |" +
+                            rows.get(i).getColumn().get(i) + " |" +
+                            rows.get(i).getColumn().get(i) + " |" +
+                            rows.get(i).getColumn().get(i) + " |" +
+                            rows.get(i).getColumn().get(i) + " |" +
+                            rows.get(i).getColumn().get(i) + " |" +
+                            rows.get(i).getColumn().get(i) + " |" +
+                            "\n";
+        }
+        return board;
+    }
+
+    public static void main(String[] args) {
+        Board board = new Board();
+        board.newBoard();
+
+        board.setFigure(1, 1, new Queen(Color.BLACK));
+        System.out.println(board);
+        board.setFigure(2, 2, new Pawn(Color.WHITE));
+        System.out.println(board);
+
+    }
 }
+
