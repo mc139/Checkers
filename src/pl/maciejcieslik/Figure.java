@@ -1,8 +1,15 @@
 package pl.maciejcieslik;
 
-public class Figure implements FigureType {
+public class Figure {
 
-    Figure pawn = new Figure();
-    Figure Queen = new Figure();
+    private Color color;
+
+    public Figure(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 
 }
