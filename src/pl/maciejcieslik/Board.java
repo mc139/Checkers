@@ -20,6 +20,11 @@ public class Board extends BoardRow {
         setFigure(row1,col1,new None());
     }
 
+    public boolean availableMove(int row1, int col1,int row2,int col2,Figure figure){
+        if((row1 - row2)>1 && (col1- col2)>1 );
+        return false;
+    }
+
     public Figure getFigure(int row, int col) {
         return (Figure) rows.get(row).getColumn().get(col);
     }
